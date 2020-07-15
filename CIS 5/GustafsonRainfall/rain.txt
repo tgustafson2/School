@@ -1,0 +1,4 @@
+The total rainfall is:                      118.00
+The average rainfall per month is:            9.83
+June        has the highest rainfall at:     22.00
+April       has the lowest rainfall at:       1.00

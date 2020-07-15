@@ -1,0 +1,6 @@
+     6839	Sally	Ride	4.00
+     1234	Billy	Smith	4.00
+     4796	Jean Pierre	Anderson	2.99
+     3961	Trevor	Jones	4.15
+     5440	Mary	Jenkins	3.79
+     1580	Leeroy	Jenkins	4.00

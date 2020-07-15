@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>BlueProperty.h</itemPath>
+      <itemPath>Board.h</itemPath>
+      <itemPath>BoardLocation.h</itemPath>
+      <itemPath>BrownProperty.h</itemPath>
+      <itemPath>Chance.h</itemPath>
+      <itemPath>CommunityChest.h</itemPath>
+      <itemPath>GreenProperty.h</itemPath>
+      <itemPath>LightBlueProperty.h</itemPath>
+      <itemPath>OrangeProperty.h</itemPath>
+      <itemPath>Player.h</itemPath>
+      <itemPath>PurpleProperty.h</itemPath>
+      <itemPath>Railroad.h</itemPath>
+      <itemPath>RedProperty.h</itemPath>
+      <itemPath>Utilities.h</itemPath>
+      <itemPath>YellowProperty.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+      </compileType>
+      <item path="BlueProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Board.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BoardLocation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BrownProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Chance.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CommunityChest.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GreenProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LightBlueProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="OrangeProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PurpleProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Railroad.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RedProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Utilities.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="YellowProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="BlueProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Board.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BoardLocation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BrownProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Chance.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CommunityChest.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GreenProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LightBlueProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="OrangeProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PurpleProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Railroad.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RedProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Utilities.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="YellowProperty.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
