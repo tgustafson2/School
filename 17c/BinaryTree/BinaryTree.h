@@ -15,7 +15,6 @@
 #define BINARYTREE_H
 #include <iostream>
 #include <queue>
-#include <string>
 #include <valarray>
 using namespace std;
 template <class T>
@@ -29,16 +28,12 @@ class BinaryTree{
 private:
     node<T2> *root;
 public:
-    BinaryTree(){
-        root=NULL;
-    }
     BinaryTree(T2 val){
         root=new node<T2>;
         root->data=val;
         root->left=NULL;
         root->right=NULL;
     }
-    
     ~BinaryTree(){
         cleanup(root);
     }
@@ -51,12 +46,17 @@ public:
     void prntPre();
     void prntPre(node<T2>*);
     void prntLev();
-    void prntLev(int);
     void prntLev(node<T2>*,int);
     int height(node<T2>*);
-    int diff(node<T2>*);
+    int height(){
+        int l=height(root->left);
+    int r=height(root->right);
+    cout<<"Left branch height"<<l<<endl;
+    cout<<"Right branch height"<<r<<endl;
+        return height (root);
+    }
     void insertNode(T2);
-    node<T2>* insert(node<T2>*, node<T2>*);
+    void insert(node<T2>*&, node<T2>*&);
     void remove(T2);
     void deleteNode(T2, node<T2>*&);
     void deletion(node<T2>*&);
@@ -151,28 +151,16 @@ template <class T2>
 void BinaryTree<T2>::prntLev(){
     
     int h = height(root);
-    for (int i=1;i<=h;i++){prntLev( i);
+    for (int i=1;i<=h;i++){prntLev(root, i);
     cout<<endl;
     }  
 }
-template <class T2>
-void BinaryTree<T2>::prntLev(int level){
-    ///node * temp=root;
-    if (root == NULL){
-        
-        return;}  
-    if (level == 1)  
-        cout << root->data << " ";  
-    else if (level > 1){  
-        prntLev(root->left, level-1);  
-        prntLev(root->right, level-1);  
-    }  
-}
+
 template <class T2>
 void BinaryTree<T2>::prntLev(node<T2> *root,int level){
     //node * temp=root;
-    if (root == NULL){
-        cout<<"  ";
+    if (root == NULL||root==nullptr){
+        cout<<"   ";
         return;}  
     if (level == 1)  
         cout << root->data << " ";  
@@ -182,68 +170,46 @@ void BinaryTree<T2>::prntLev(node<T2> *root,int level){
     }  
 }
 template <class T2>
-int BinaryTree<T2>::height(node<T2>* temp){
-//    if (node == NULL)return 0; 
-//    
-//    //compute the height of each subtree
-//    int lheight = height(node->left);
-//    int rheight = height(node->right);
-//    //use the larger one
-//    if (lheight > rheight)return(lheight + 1);  
-//    else return(rheight + 1);
-    int h = 0;
-    if (temp != NULL){
-        int l_height = height (temp->left);
-        int r_height = height (temp->right);
-        int max_height = max (l_height, r_height);
-        h = max_height + 1;
-    }
-    return h;
+int BinaryTree<T2>::height(node<T2>* node){
+    if (node == NULL)return 0; 
+    
+    //compute the height of each subtree
+    int lheight = height(node->left);
+    int rheight = height(node->right);
+    //use the larger one
+    if (lheight > rheight)return(lheight + 1);  
+    else return(rheight + 1);
 }
-template <class T2>
-int BinaryTree<T2>::diff(node<T2>*temp){
-    int l_height=height(temp->left);
-    int r_height=height(temp->right);
-    int b_factor=l_height-r_height;
-    return b_factor;
-}
+
 template<class T2>
 void BinaryTree<T2>::insertNode(T2 val){
     node<T2> *insNode=newNode(val);
   
-    root=insert (root,insNode);
-//    root=balance(root);
+    insert (root,insNode);
+//    balance();
 }
 template <class T2>
-node<T2>* BinaryTree<T2>::insert(node<T2>* root, node<T2>* branch){
+void BinaryTree<T2>::insert(node<T2>* &root, node<T2>* &branch){
    
     if (root==nullptr) {
         root=branch;
         
     }
-    else if (branch->data<root->data){root->left=insert (root->left,branch);
+    //remember to account for duplicates
+    if (branch->data < root->data)insert (root->left,branch);
+    else if (branch->data > root->data) insert (root->right,branch);
     root=balance(root);
-    }
-    else {root->right=insert (root->right,branch);
-    root=balance(root);
-    }
-    return root;
     
 }
 template <class T2>
 void BinaryTree<T2>::remove (T2 val){
     deleteNode(val, root);
-    root=balance(root);
+    balance();
 }
 template <class T2>
 void BinaryTree<T2>::deleteNode(T2 val, node<T2>* &root){
-    if (val<root->data){deleteNode(val,root->left);
-    root=balance(root);
-    }
-    else if (val>root->data){
-        deleteNode(val,root->right);
-    root=balance(root);
-    }
+    if (val<root->data)deleteNode(val,root->left);
+    else if (val>root->data)deleteNode(val,root->right);
     else deletion(root);
     
 }
@@ -272,35 +238,42 @@ void BinaryTree<T2>::deletion(node<T2>*& root){
 }
 template <class T2>
 node<T2>* BinaryTree<T2>::balance(node<T2>* root){
-//    if (root == NULL)return 0; 
-    int bal_factor=diff(root);
-//    }while(rheight>lheight+1||lheight>rheight+1);
+    if (root == NULL){
+        return 0;} 
+    int lheight, rheight;
 
-    if (bal_factor>1){
-        
-        if (diff(root->left)>0){
-            root=leftrota(root);
-        }
-        else
-        root=doubleleft(root);
+    lheight = height(root->left);
+    rheight = height(root->right);
 
 
-    }
-    else if (bal_factor<-1){
-        
-        if (diff(root->right)>0){
-            root=doubleright(root);
+    if (rheight>(lheight+1)){
+        int branchlheight, branchrheight;
+        branchlheight=height(root->right->left);
+        branchrheight=height(root->right->right);
+        if (branchlheight>branchrheight+1){
+            root=doubleleft(root);
            
         }
         else
-        root=rightrota(root);
+        root=leftrota(root);
             
         
         
 
     }
-    
-//    }while(rheight>lheight+1||lheight>rheight+1);
+    else if (lheight>(rheight+1)){
+        int branchlheight, branchrheight;
+        branchlheight=height(root->left->left);
+        branchrheight=height(root->left->right);
+        if (branchrheight>branchlheight+1)
+            root=doubleright(root);
+
+        else
+        root=rightrota(root);
+
+
+    }
+
     return root;
   
 }
@@ -316,51 +289,32 @@ void BinaryTree<T2>::balance(){
 template <class T2>
 node<T2>* BinaryTree<T2>::rightrota(node<T2>* root){
     node<T2>* temp;
-//    temp=root;
-//    root=root->left;
-//    temp->left=root->right;
-//    root->right=temp;
-    temp=root->right;
-    root->right=temp->left;
-    temp->left=root;
-//    temp=root;
+    temp=root->left;
+    root->left=temp->right;
+    temp->right=root;
     return temp;
 }
 template <class T2>
 node<T2>* BinaryTree<T2>::leftrota(node<T2>* root){
     node<T2>* temp;
-//    temp=root;
-//    root=root->right;
-//    temp->right=root->left;
-//    root->left=temp;
-    temp=root->left;
-    root->left=temp->right;
-    temp->right=root;
-//    temp=root;
+    temp=root->right;
+    root->right=temp->left;
+    temp->left=root;
     return temp;
 }
 template <class T2>
 node<T2>* BinaryTree<T2>::doubleleft(node<T2>* root){
-    node<T2>* temp;
-//    cout<<"Double left";
-//    root->right=rightrota(root->right);
-//    root=leftrota(root);
-    temp=root->left;
-    root->left=rightrota(temp);
-    return leftrota(root);
-//    temp=root;
-//    return temp;
+    
+    root->right=rightrota(root->right);
+    root=leftrota(root);
+    return root;
 }
 template <class T2>
 node<T2>* BinaryTree<T2>::doubleright(node<T2>* root){
-    node <T2>*temp;
-//    cout<<"Double right";
-    temp=root->right;
-    root->right=leftrota(temp);
-    return rightrota(root);
-//    temp=root;
-//    return temp;
     
+    root->left=leftrota(root->left);
+    root=rightrota(root);
+    return root;
 }
 template<class T2>
 void BinaryTree<T2>::cleanup(node<T2>*&root){

@@ -8,55 +8,42 @@
  * File:   main.cpp
  * Author: tgust
  *
- * Created on November 29, 2019, 3:58 PM
+ * Created on July 16, 2020, 6:13 PM
  */
 //System Libraries
 #include <iostream>
-#include <cmath>
+#include <ctime>
+#include "Sort.h"
 using namespace std;
 
 //User Libraries
-#include "BinaryTree.h"
 
 //Global Constants
 
 //Function Prototypes
 
+
 //Execution Begins Here
 
 int main(int argc, char** argv) {
     //Set random number seed here
-
-    srand(static_cast<unsigned int>(time(0)));
+    srand(time(0));
     //Declare Variables
-    BinaryTree<int> tree(rand()%90+10);
-    
-    tree.insertNode(40);
-    
+    int size=50;
+    int *arr=new int[size];
     //Initialize Variables
-
-    //Process inputs to outputs/map
-    for (int i=0; i<100;i++){
-        tree.insertNode(rand()%90+10);
+    for (int i=0;i<size;i++){
+        arr[i]=rand()%100;
     }
-//    tree.remove(40);
+    Sort<int>::ShellSort(arr,size);
+    //Process inputs to outputs/map
     
 
     //Display the results
-
-//    tree.prntIn();
-    cout<<tree.height();
-    cout<<endl;
-    
-    //tree.balance();
-    tree.prntIn();
-    cout<<endl;
-    tree.prntPre();
-    cout<<endl;
-    tree.prntPst();
-    cout<<endl;
-    tree.prntLev();
-    tree.~BinaryTree();
+    for (int i=0; i<size;i++){
+        cout<<arr[i]<<' ';
+        if (i%10==9)cout<<endl;
+    }
     //Clean up and exit stage right
     return 0;
 }
